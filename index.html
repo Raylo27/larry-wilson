@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Larry Wilson — Business &amp; Financial Coaching</title>
+<meta name="description" content="Larry Wilson coaches entrepreneurs and professionals on business and money through a paid Patreon community, and speaks at events on financial literacy and business fundamentals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #F6F1E6;
+    --ink-raised: #ECE4D4;
+    --text: #1B1812;
+    --muted: #6B6152;
+    --brass: #A9722C;
+    --brass-strong: #8A5A20;
+    --ledger: #3F5D4C;
+    --ledger-strong: #2E4438;
+    --line: rgba(90, 66, 24, 0.18);
+    --line-strong: rgba(90, 66, 24, 0.32);
+    --shadow: 0 1px 0 rgba(27,24,18,0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #15130F;
+      --ink-raised: #211D17;
+      --text: #F2EDE1;
+      --muted: #A79C87;
+      --brass: #E0AC5C;
+      --brass-strong: #C89049;
+      --ledger: #7FA48F;
+      --ledger-strong: #5E8172;
+      --line: rgba(224,172,92,0.18);
+      --line-strong: rgba(224,172,92,0.32);
+      --shadow: 0 1px 0 rgba(0,0,0,0.4);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ink: #15130F;
+    --ink-raised: #211D17;
+    --text: #F2EDE1;
+    --muted: #A79C87;
+    --brass: #E0AC5C;
+    --brass-strong: #C89049;
+    --ledger: #7FA48F;
+    --ledger-strong: #5E8172;
+    --line: rgba(224,172,92,0.18);
+    --line-strong: rgba(224,172,92,0.32);
+    --shadow: 0 1px 0 rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-weight: 600;
+    line-height: 1.05;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--text);
+  }
+
+  .mono {
+    font-family: "Space Mono", ui-monospace, SFMono-Regular, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  a { color: inherit; }
+
+  .eyebrow {
+    font-family: "Space Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 0 1.25rem; }
+    body { font-size: 16px; }
+  }
+
+  /* ---------- Nav ---------- */
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--ink) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 0;
+  }
+  .wordmark {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .wordmark span { color: var(--brass); }
+  nav.links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  nav.links a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--muted);
+    transition: color 0.15s ease;
+  }
+  nav.links a:hover, nav.links a:focus-visible { color: var(--text); }
+  nav.links a:focus-visible { outline: 2px solid var(--brass); outline-offset: 4px; border-radius: 2px; }
+  @media (max-width: 760px) {
+    nav.links a.hide-mobile { display: none; }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 3px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  .btn-primary {
+    background: var(--brass);
+    color: #1B1812;
+  }
+  .btn-primary:hover { background: var(--brass-strong); transform: translateY(-1px); }
+  .btn-ghost {
+    border-color: var(--line-strong);
+    color: var(--text);
+    background: transparent;
+  }
+  .btn-ghost:hover { border-color: var(--brass); color: var(--brass); }
+  .btn-sm { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 5.5rem 0 5rem;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding: 3rem 0 3rem; gap: 3rem; }
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 5.4vw, 4.1rem);
+    margin-top: 0.9rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--brass);
+  }
+  .hero p.lede {
+    margin-top: 1.4rem;
+    max-width: 46ch;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
+  .hero .cta-row {
+    margin-top: 2.2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .portrait-mark {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(120% 90% at 15% 0%, color-mix(in srgb, var(--brass) 20%, transparent), transparent 60%),
+      linear-gradient(160deg, var(--ink-raised), color-mix(in srgb, var(--ledger) 22%, var(--ink-raised)));
+    overflow: hidden;
+  }
+  .portrait-mark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 42px),
+      repeating-linear-gradient(0deg, var(--line) 0 1px, transparent 1px 42px);
+    opacity: 0.5;
+  }
+  .portrait-mark .initials {
+    position: relative;
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: clamp(4.5rem, 11vw, 7rem);
+    color: var(--brass);
+    letter-spacing: 0.02em;
+  }
+  .portrait-mark .swap-note {
+    position: absolute;
+    bottom: 0.9rem;
+    left: 0.9rem;
+    right: 0.9rem;
+    font-family: "Space Mono", monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.8;
+  }
+
+  /* ---------- Ledger stat strip ---------- */
+  .stat-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stat-strip .wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stat {
+    padding: 2.1rem 1.5rem;
+    text-align: left;
+    border-left: 1px solid var(--line);
+  }
+  .stat:first-child { border-left: none; }
+  @media (max-width: 640px) {
+    .stat-strip .wrap { grid-template-columns: 1fr; }
+    .stat { border-left: none; border-top: 1px solid var(--line); padding: 1.5rem; }
+    .stat:first-child { border-top: none; }
+  }
+  .stat .num {
+    font-size: 2.1rem;
+    color: var(--brass);
+    display: block;
+  }
+  .stat .label {
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: 6rem 0; }
+  section.raised { background: var(--ink-raised); }
+  .section-head {
+    max-width: 62ch;
+    margin-bottom: 3rem;
+  }
+  .section-head h2 {
+    font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    margin-top: 0.7rem;
+  }
+  .section-head p { margin-top: 1rem; color: var(--muted); max-width: 56ch; }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3.5rem;
+  }
+  @media (max-width: 800px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  .about-grid .lede-quote {
+    font-family: "Fraunces", serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.35;
+    text-wrap: balance;
+    border-left: 2px solid var(--brass);
+    padding-left: 1.3rem;
+  }
+  .about-body p { color: var(--muted); margin: 0 0 1.1rem; }
+  .about-body p:last-child { margin-bottom: 0; }
+  .about-body strong { color: var(--text); font-weight: 600; }
+
+  /* Offer cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 900px) {
+    .card-grid { grid-template-columns: 1fr; }
+  }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.9rem 1.7rem;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  section.raised .card { background: var(--ink-raised); }
+  .card .tier-label {
+    font-family: "Space Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ledger);
+  }
+  .card h3 { font-size: 1.25rem; }
+  .card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .card li {
+    font-size: 0.92rem;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .card li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--brass);
+  }
+  .card .price {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    font-family: "Space Mono", monospace;
+    font-size: 0.95rem;
+    color: var(--text);
+    border-top: 1px solid var(--line);
+  }
+
+  /* Speaking */
+  .speak-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .speak-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  .topic-list { display: flex; flex-direction: column; }
+  .topic-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 1.3rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .topic-row:last-child { border-bottom: 1px solid var(--line); }
+  .topic-row .name { font-family: "Fraunces", serif; font-size: 1.15rem; font-weight: 500; }
+  .topic-row .fmt {
+    font-family: "Space Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .booking-box {
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    padding: 2rem;
+    background: var(--ink);
+  }
+  section.raised .booking-box { background: var(--ink-raised); }
+  .booking-box h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }
+  .booking-box p { color: var(--muted); font-size: 0.94rem; margin: 0 0 1.4rem; }
+
+  /* Testimonial placeholder */
+  .quote-card {
+    border: 1px dashed var(--line-strong);
+    border-radius: 4px;
+    padding: 2.2rem;
+    text-align: left;
+  }
+  .quote-card p.placeholder-copy {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 56ch;
+  }
+  .quote-card .tag {
+    margin-top: 1rem;
+    font-family: "Space Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  /* Final CTA */
+  .final-cta {
+    text-align: left;
+    padding: 6.5rem 0;
+  }
+  .final-cta h2 {
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    max-width: 18ch;
+  }
+  .final-cta .cta-row {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 3rem 0;
+  }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .footer-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+  .footer-links a { text-decoration: none; color: var(--muted); font-size: 0.88rem; }
+  .footer-links a:hover { color: var(--brass); }
+  footer .copy { margin-top: 2.2rem; font-size: 0.78rem; color: var(--muted); }
+  footer .copy .mono { font-size: 0.78rem; }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap nav-row">
+    <a class="wordmark" href="#top">Larry <span>Wilson</span></a>
+    <nav class="links">
+      <a href="#about" class="hide-mobile">About</a>
+      <a href="#coaching" class="hide-mobile">Coaching</a>
+      <a href="#speaking" class="hide-mobile">Speaking</a>
+      <a href="#contact" class="hide-mobile">Contact</a>
+      <a href="https://patreon.com/larrywilson" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Join the Patreon</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero">
+      <div>
+        <p class="eyebrow">Business &amp; Financial Coaching</p>
+        <h1>Build wealth like <em>it's actually your job</em> — because it is.</h1>
+        <p class="lede">I coach entrepreneurs and working professionals through the real, unglamorous mechanics of building a business and a balance sheet that both hold up. No hype cycles, no theory — a system I run myself and teach every week inside the group.</p>
+        <div class="cta-row">
+          <a href="https://patreon.com/larrywilson" class="btn btn-primary" target="_blank" rel="noopener">Join the Coaching Group</a>
+          <a href="#speaking" class="btn btn-ghost">Book Larry to Speak</a>
+        </div>
+      </div>
+      <div class="portrait-mark" role="img" aria-label="Placeholder portrait mark for Larry Wilson — swap for a real photo">
+        <span class="initials">LW</span>
+        <span class="swap-note">Swap in Larry's photo here</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="stat-strip">
+    <div class="wrap">
+      <div class="stat">
+        <span class="num mono">14 yrs</span>
+        <span class="label">building &amp; operating businesses</span>
+      </div>
+      <div class="stat">
+        <span class="num mono">500+</span>
+        <span class="label">people coached inside the group</span>
+      </div>
+      <div class="stat">
+        <span class="num mono">30+</span>
+        <span class="label">talks &amp; workshops delivered</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <p class="lede-quote">"I didn't learn this from a textbook. I learned it by running the numbers wrong for a decade before I ran them right."</p>
+      <div class="about-body">
+        <p><strong>Larry Wilson</strong> spent the first half of his career building businesses the hard way — trial, error, and a lot of expensive lessons about cash flow, debt, and what "profitable" actually means. The second half has been about teaching other people to skip the expensive part.</p>
+        <p>Today he runs a paid coaching community for entrepreneurs and professionals who want a straight answer on their business and their money — not a course that sits half-finished, but a standing group with weekly calls, real feedback, and people who show up.</p>
+        <p>He also speaks — to companies, associations, and events who want financial literacy and business fundamentals taught in plain language, without the jargon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="raised" id="coaching">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Patreon</p>
+        <h2>What you get inside the group</h2>
+        <p>Three ways to work with Larry, depending on how close you want the coaching.</p>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <span class="tier-label">Tier 01</span>
+          <h3>Foundations</h3>
+          <ul>
+            <li>Weekly group coaching call</li>
+            <li>Private community access</li>
+            <li>Monthly financial planning templates</li>
+          </ul>
+          <span class="price mono">$29 / month</span>
+        </div>
+        <div class="card">
+          <span class="tier-label">Tier 02</span>
+          <h3>Operator</h3>
+          <ul>
+            <li>Everything in Foundations</li>
+            <li>Live monthly Q&amp;A with Larry</li>
+            <li>Business &amp; budget review templates</li>
+            <li>Early access to workshops</li>
+          </ul>
+          <span class="price mono">$79 / month</span>
+        </div>
+        <div class="card">
+          <span class="tier-label">Tier 03</span>
+          <h3>Inner Circle</h3>
+          <ul>
+            <li>Everything in Operator</li>
+            <li>Quarterly 1:1 strategy session</li>
+            <li>Direct message access</li>
+            <li>Annual planning intensive</li>
+          </ul>
+          <span class="price mono">$199 / month</span>
+        </div>
+      </div>
+      <div class="cta-row" style="margin-top: 2.5rem;">
+        <a href="https://patreon.com/larrywilson" class="btn btn-primary" target="_blank" rel="noopener">See all tiers on Patreon</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="speaking">
+    <div class="wrap speak-grid">
+      <div>
+        <div class="section-head" style="margin-bottom: 1rem;">
+          <p class="eyebrow">Speaking &amp; Workshops</p>
+          <h2>Bring Larry to your stage or your team</h2>
+        </div>
+        <div class="topic-list">
+          <div class="topic-row">
+            <span class="name">Building Wealth on a Real Timeline</span>
+            <span class="fmt">Keynote · 45 min</span>
+          </div>
+          <div class="topic-row">
+            <span class="name">From Side Hustle to Sustainable Business</span>
+            <span class="fmt">Workshop · Half-day</span>
+          </div>
+          <div class="topic-row">
+            <span class="name">Financial Literacy for Entrepreneurs</span>
+            <span class="fmt">Corporate training</span>
+          </div>
+          <div class="topic-row">
+            <span class="name">Reading Your Own Numbers</span>
+            <span class="fmt">Workshop · 90 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="booking-box">
+        <h3>Check availability</h3>
+        <p>Tell me about your event — audience, date, and format — and I'll follow up within 2 business days.</p>
+        <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-primary" style="width:100%; justify-content:center;">Email to Book</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="raised">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">In Their Words</p>
+        <h2>What members and audiences say</h2>
+      </div>
+      <div class="quote-card">
+        <p class="placeholder-copy">This is a placeholder for a real testimonial. Ask Larry for two or three short quotes from Patreon members or event hosts, and drop them in here — one to two sentences each reads best.</p>
+        <p class="tag">— Placeholder, replace before launch</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Start Now</p>
+      <h2>Your numbers won't fix themselves. Let's get to work.</h2>
+      <div class="cta-row">
+        <a href="https://patreon.com/larrywilson" class="btn btn-primary" target="_blank" rel="noopener">Join the Coaching Group</a>
+        <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-ghost">Book a Speaking Engagement</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="wordmark" href="#top">Larry <span>Wilson</span></a>
+        <nav class="footer-links">
+          <a href="https://patreon.com/larrywilson" target="_blank" rel="noopener">Patreon</a>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:booking@larrywilsoncoaching.com">booking@larrywilsoncoaching.com</a>
+        </nav>
+      </div>
+      <p class="copy mono">© 2026 Larry Wilson Coaching. All rights reserved.</p>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
