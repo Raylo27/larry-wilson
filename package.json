@@ -1,0 +1,10 @@
+{
+  "name": "larry-wilson",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Larry Wilson — business & financial coaching personal brand site (static single page, zero dependencies)",
+  "scripts": {
+    "build": "node build-check.js",
+    "dev": "python3 -m http.server 4173 -d public"
+  }
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Larry Wilson — Business &amp; Financial Coaching</title>
-<meta name="description" content="Larry Wilson coaches entrepreneurs and professionals on business and money through a paid Patreon community, and speaks at events on financial literacy and business fundamentals.">
+<meta name="description" content="Larry Wilson coaches entrepreneurs and professionals on business and money through a paid Patreon coaching community, and speaks at events on financial literacy and business fundamentals.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -106,6 +106,9 @@
     body { font-size: 16px; }
   }
 
+  /* Anchor offset for sticky nav */
+  section[id], div[id] { scroll-margin-top: 84px; }
+
   /* ---------- Nav ---------- */
   header.site-nav {
     position: sticky;
@@ -173,10 +176,11 @@
   }
   .btn-ghost:hover { border-color: var(--brass); color: var(--brass); }
   .btn-sm { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
+  .btn-lg { padding: 1rem 1.9rem; font-size: 1rem; }
 
   /* ---------- Hero ---------- */
   .hero {
-    padding: 5.5rem 0 5rem;
+    padding: 5.5rem 0 4.5rem;
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
     gap: 4rem;
@@ -186,17 +190,25 @@
     .hero { grid-template-columns: 1fr; padding: 3rem 0 3rem; gap: 3rem; }
   }
   .hero h1 {
-    font-size: clamp(2.5rem, 5.4vw, 4.1rem);
+    font-size: clamp(2.8rem, 6vw, 4.4rem);
     margin-top: 0.9rem;
+    letter-spacing: -0.01em;
   }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--brass);
+  .hero .tagline {
+    font-family: "Fraunces", serif;
+    font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+    font-weight: 500;
+    color: var(--muted);
+    line-height: 1.35;
+    max-width: 26ch;
+    margin-top: 1.1rem;
+    text-wrap: balance;
   }
+  .hero .tagline em { font-style: normal; color: var(--brass); }
   .hero p.lede {
-    margin-top: 1.4rem;
+    margin-top: 1.3rem;
     max-width: 46ch;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--muted);
   }
   .hero .cta-row {
@@ -249,9 +261,56 @@
     opacity: 0.8;
   }
 
+  /* ---------- Platform links hub ---------- */
+  .platform-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 2.4rem 0;
+  }
+  .platform-strip .strip-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+  }
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 760px) {
+    .platform-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .platform-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.15rem 1.2rem;
+    text-decoration: none;
+    font-family: "Fraunces", serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: border-color 0.15s ease, transform 0.15s ease, color 0.15s ease;
+  }
+  .platform-card .arrow {
+    font-family: "Space Mono", monospace;
+    font-size: 0.9rem;
+    color: var(--brass);
+    transition: transform 0.15s ease;
+  }
+  .platform-card:hover, .platform-card:focus-visible {
+    border-color: var(--brass);
+    transform: translateY(-2px);
+  }
+  .platform-card:hover .arrow, .platform-card:focus-visible .arrow { transform: translateX(3px); }
+  .platform-card:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
   /* ---------- Ledger stat strip ---------- */
   .stat-strip {
-    border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
   .stat-strip .wrap {
@@ -279,6 +338,15 @@
     font-size: 0.85rem;
     color: var(--muted);
   }
+  .edit-note {
+    padding: 0.9rem 0 1.4rem;
+    font-family: "Space Mono", monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.75;
+  }
 
   /* ---------- Sections ---------- */
   section { padding: 6rem 0; }
@@ -293,7 +361,7 @@
   }
   .section-head p { margin-top: 1rem; color: var(--muted); max-width: 56ch; }
 
-  /* About */
+  /* Story / About */
   .about-grid {
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
@@ -315,54 +383,64 @@
   .about-body p:last-child { margin-bottom: 0; }
   .about-body strong { color: var(--text); font-weight: 600; }
 
-  /* Offer cards */
-  .card-grid {
+  /* Coaching community */
+  .coach-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3.5rem;
+    align-items: start;
   }
-  @media (max-width: 900px) {
-    .card-grid { grid-template-columns: 1fr; }
+  @media (max-width: 860px) {
+    .coach-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   }
-  .card {
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 1.9rem 1.7rem;
-    background: var(--ink);
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-  section.raised .card { background: var(--ink-raised); }
-  .card .tier-label {
-    font-family: "Space Mono", monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ledger);
-  }
-  .card h3 { font-size: 1.25rem; }
-  .card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-  .card li {
-    font-size: 0.92rem;
-    color: var(--muted);
-    padding-left: 1.2rem;
+  .pitch-list { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+  .pitch-list li {
+    padding: 1.25rem 0 1.25rem 2rem;
+    border-top: 1px solid var(--line);
     position: relative;
   }
-  .card li::before {
+  .pitch-list li:last-child { border-bottom: 1px solid var(--line); }
+  .pitch-list li::before {
     content: "—";
     position: absolute;
     left: 0;
     color: var(--brass);
-  }
-  .card .price {
-    margin-top: auto;
-    padding-top: 0.6rem;
     font-family: "Space Mono", monospace;
-    font-size: 0.95rem;
-    color: var(--text);
-    border-top: 1px solid var(--line);
   }
+  .pitch-list .pt { font-family: "Fraunces", serif; font-size: 1.15rem; font-weight: 500; display: block; }
+  .pitch-list .pd { margin-top: 0.3rem; font-size: 0.94rem; color: var(--muted); display: block; max-width: 48ch; }
+
+  .benefits-card {
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    padding: 2.1rem 1.9rem;
+    background: var(--ink);
+  }
+  section.raised .benefits-card { background: var(--ink-raised); }
+  .benefits-card h3 { font-size: 1.2rem; margin-bottom: 0.3rem; }
+  .benefits-card .sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 1.4rem; }
+  .benefits-card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.7rem; counter-reset: ben; }
+  .benefits-card li {
+    counter-increment: ben;
+    font-size: 0.94rem;
+    color: var(--muted);
+    padding-left: 2.5rem;
+    position: relative;
+  }
+  .benefits-card li::before {
+    content: counter(ben, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: "Space Mono", monospace;
+    font-size: 0.72rem;
+    color: var(--brass);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    padding: 0.1rem 0.3rem;
+  }
+  .benefits-card .join-row { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.7rem; align-items: flex-start; }
+  .benefits-card .price-hint { font-family: "Space Mono", monospace; font-size: 0.72rem; color: var(--muted); }
 
   /* Speaking */
   .speak-grid {
@@ -403,28 +481,49 @@
   .booking-box h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }
   .booking-box p { color: var(--muted); font-size: 0.94rem; margin: 0 0 1.4rem; }
 
-  /* Testimonial placeholder */
+  /* Testimonials */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 900px) {
+    .testimonial-grid { grid-template-columns: 1fr; }
+  }
   .quote-card {
     border: 1px dashed var(--line-strong);
     border-radius: 4px;
-    padding: 2.2rem;
-    text-align: left;
+    padding: 1.9rem 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: var(--ink);
   }
-  .quote-card p.placeholder-copy {
+  section.raised .quote-card { background: var(--ink-raised); }
+  .quote-card .quote-text {
     font-family: "Fraunces", serif;
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: 1.08rem;
     color: var(--muted);
     line-height: 1.5;
-    max-width: 56ch;
   }
   .quote-card .tag {
-    margin-top: 1rem;
+    margin-top: auto;
     font-family: "Space Mono", monospace;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--brass);
+  }
+  .quote-card .edit-hint {
+    font-family: "Space Mono", monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.7;
+    border-top: 1px solid var(--line);
+    padding-top: 0.8rem;
   }
 
   /* Final CTA */
@@ -460,36 +559,69 @@
   .footer-links a:hover { color: var(--brass); }
   footer .copy { margin-top: 2.2rem; font-size: 0.78rem; color: var(--muted); }
   footer .copy .mono { font-size: 0.78rem; }
+  footer .placeholder-flag {
+    margin-top: 0.8rem;
+    font-family: "Space Mono", monospace;
+    font-size: 0.66rem;
+    color: var(--muted);
+    opacity: 0.75;
+  }
 </style>
 </head>
 <body>
+
+<!--
+  ============================================================
+  LARRY WILSON — PERSONAL BRAND SITE v2
+  Static single page. No build step required (npm run build
+  runs a validation check only).
+
+  PLACEHOLDER CHECKLIST — search for "TODO" in this file:
+  1. Patreon URL: replace every https://patreon.com/PLACEHOLDER
+  2. Contact / booking email: replace every
+     mailto:booking@larrywilsoncoaching.com
+  3. Platform links: replace href="#" on the 4 platform cards
+     (Patreon, YouTube, LinkedIn, Instagram) + footer links
+  4. Social proof counters: edit the .stat figures (members /
+     events / years) — marked with data-edit attributes
+  5. Testimonials: replace the 3 placeholder quote cards
+  6. Photos: swap the "LW" portrait mark for a real photo
+  7. Member benefits: the .benefits-card list is a placeholder
+  ============================================================
+-->
 
 <header class="site-nav">
   <div class="wrap nav-row">
     <a class="wordmark" href="#top">Larry <span>Wilson</span></a>
     <nav class="links">
-      <a href="#about" class="hide-mobile">About</a>
+      <a href="#story" class="hide-mobile">Story</a>
       <a href="#coaching" class="hide-mobile">Coaching</a>
       <a href="#speaking" class="hide-mobile">Speaking</a>
       <a href="#contact" class="hide-mobile">Contact</a>
-      <a href="https://patreon.com/larrywilson" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Join the Patreon</a>
+      <!-- TODO: replace with Larry's real Patreon URL -->
+      <a href="https://patreon.com/PLACEHOLDER" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Join the Patreon</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
 
+  <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="wrap hero">
       <div>
         <p class="eyebrow">Business &amp; Financial Coaching</p>
-        <h1>Build wealth like <em>it's actually your job</em> — because it is.</h1>
+        <h1>Larry Wilson</h1>
+        <p class="tagline">Build wealth like it's <em>actually your job</em> — because it is.</p>
         <p class="lede">I coach entrepreneurs and working professionals through the real, unglamorous mechanics of building a business and a balance sheet that both hold up. No hype cycles, no theory — a system I run myself and teach every week inside the group.</p>
         <div class="cta-row">
-          <a href="https://patreon.com/larrywilson" class="btn btn-primary" target="_blank" rel="noopener">Join the Coaching Group</a>
-          <a href="#speaking" class="btn btn-ghost">Book Larry to Speak</a>
+          <!-- TODO: replace with Larry's real Patreon URL -->
+          <a href="https://patreon.com/PLACEHOLDER" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Join the Coaching Community</a>
+          <!-- TODO: replace with Larry's real booking email -->
+          <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-ghost btn-lg">Book Me to Speak</a>
         </div>
       </div>
+      <!-- TODO: replace the "LW" mark with a real photo of Larry -->
       <div class="portrait-mark" role="img" aria-label="Placeholder portrait mark for Larry Wilson — swap for a real photo">
         <span class="initials">LW</span>
         <span class="swap-note">Swap in Larry's photo here</span>
@@ -497,81 +629,112 @@
     </div>
   </section>
 
-  <div class="stat-strip">
+  <!-- ================= PLATFORM LINKS ================= -->
+  <div class="platform-strip">
     <div class="wrap">
-      <div class="stat">
-        <span class="num mono">14 yrs</span>
-        <span class="label">building &amp; operating businesses</span>
+      <div class="strip-head">
+        <p class="eyebrow">Official Platform Links</p>
+        <p class="mono" style="font-size:0.7rem; color:var(--muted); margin:0;">follow / subscribe / connect</p>
       </div>
-      <div class="stat">
-        <span class="num mono">500+</span>
-        <span class="label">people coached inside the group</span>
-      </div>
-      <div class="stat">
-        <span class="num mono">30+</span>
-        <span class="label">talks &amp; workshops delivered</span>
+      <div class="platform-grid">
+        <!-- TODO: replace href="#" with the real Patreon URL -->
+        <a class="platform-card" href="#" target="_blank" rel="noopener" aria-label="Larry Wilson on Patreon">Patreon <span class="arrow">→</span></a>
+        <!-- TODO: replace href="#" with the real YouTube URL -->
+        <a class="platform-card" href="#" target="_blank" rel="noopener" aria-label="Larry Wilson on YouTube">YouTube <span class="arrow">→</span></a>
+        <!-- TODO: replace href="#" with the real LinkedIn URL -->
+        <a class="platform-card" href="#" target="_blank" rel="noopener" aria-label="Larry Wilson on LinkedIn">LinkedIn <span class="arrow">→</span></a>
+        <!-- TODO: replace href="#" with the real Instagram URL -->
+        <a class="platform-card" href="#" target="_blank" rel="noopener" aria-label="Larry Wilson on Instagram">Instagram <span class="arrow">→</span></a>
       </div>
     </div>
   </div>
 
-  <section id="about">
+  <!-- ================= SOCIAL PROOF COUNTERS ================= -->
+  <div class="stat-strip">
+    <div class="wrap">
+      <!-- TODO (editable placeholders): replace these three figures with Larry's real numbers -->
+      <div class="stat" data-edit="members — replace with real member count">
+        <span class="num mono">500+</span>
+        <span class="label">members coached inside the group</span>
+      </div>
+      <div class="stat" data-edit="events — replace with real number of talks/events delivered">
+        <span class="num mono">30+</span>
+        <span class="label">talks &amp; events delivered</span>
+      </div>
+      <div class="stat" data-edit="years — replace with real years running businesses">
+        <span class="num mono">14</span>
+        <span class="label">years running the numbers — wrong, then right</span>
+      </div>
+    </div>
+    <div class="wrap">
+      <p class="edit-note">↳ placeholder figures — update before launch</p>
+    </div>
+  </div>
+
+  <!-- ================= STORY / ABOUT ================= -->
+  <section id="story">
     <div class="wrap about-grid">
-      <p class="lede-quote">"I didn't learn this from a textbook. I learned it by running the numbers wrong for a decade before I ran them right."</p>
+      <p class="lede-quote">"I didn't learn this from a textbook. I ran the numbers wrong for a decade before I ran them right."</p>
       <div class="about-body">
         <p><strong>Larry Wilson</strong> spent the first half of his career building businesses the hard way — trial, error, and a lot of expensive lessons about cash flow, debt, and what "profitable" actually means. The second half has been about teaching other people to skip the expensive part.</p>
+        <p>Before the coaching there were late nights staring at spreadsheets that didn't add up, payrolls that cleared by a margin he wouldn't wish on anyone, and a debt load that taught him more than any MBA could. He didn't fix it with a windfall or a lucky break. He fixed it by finally running the numbers right — month after month, line by line — until the business and the balance sheet both held up.</p>
         <p>Today he runs a paid coaching community for entrepreneurs and professionals who want a straight answer on their business and their money — not a course that sits half-finished, but a standing group with weekly calls, real feedback, and people who show up.</p>
         <p>He also speaks — to companies, associations, and events who want financial literacy and business fundamentals taught in plain language, without the jargon.</p>
       </div>
     </div>
   </section>
 
+  <!-- ================= COACHING COMMUNITY ================= -->
   <section class="raised" id="coaching">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">The Patreon</p>
-        <h2>What you get inside the group</h2>
-        <p>Three ways to work with Larry, depending on how close you want the coaching.</p>
+        <h2>Join the coaching community</h2>
+        <p>A paid, standing group for entrepreneurs and professionals who want a straight answer on their business and their money. This is not a course that sits half-finished in your library.</p>
       </div>
-      <div class="card-grid">
-        <div class="card">
-          <span class="tier-label">Tier 01</span>
-          <h3>Foundations</h3>
+      <div class="coach-grid">
+        <ul class="pitch-list">
+          <li>
+            <span class="pt">A standing group</span>
+            <span class="pd">The same people, week after week, moving the same direction. You don't binge it — you live in it.</span>
+          </li>
+          <li>
+            <span class="pt">Weekly calls</span>
+            <span class="pd">A live call every week where Larry teaches the numbers lesson and takes questions from the room.</span>
+          </li>
+          <li>
+            <span class="pt">Real feedback</span>
+            <span class="pd">Bring your actual spreadsheets, your actual debt, your actual plan. Get a straight answer, not generic advice.</span>
+          </li>
+          <li>
+            <span class="pt">People who show up</span>
+            <span class="pd">The members who get results are the ones who show up. That's the whole strategy, and it works.</span>
+          </li>
+        </ul>
+        <div class="benefits-card">
+          <h3>What's inside</h3>
+          <p class="sub">Placeholder member benefits — confirm with Larry before launch.</p>
           <ul>
-            <li>Weekly group coaching call</li>
-            <li>Private community access</li>
+            <!-- TODO (placeholder): confirm the real member benefits with Larry -->
+            <li>Weekly live group coaching call</li>
+            <li>Private community with people who show up</li>
+            <li>Real feedback on your actual numbers</li>
+            <li>Cash-flow &amp; debt playbooks</li>
             <li>Monthly financial planning templates</li>
-          </ul>
-          <span class="price mono">$29 / month</span>
-        </div>
-        <div class="card">
-          <span class="tier-label">Tier 02</span>
-          <h3>Operator</h3>
-          <ul>
-            <li>Everything in Foundations</li>
-            <li>Live monthly Q&amp;A with Larry</li>
-            <li>Business &amp; budget review templates</li>
-            <li>Early access to workshops</li>
-          </ul>
-          <span class="price mono">$79 / month</span>
-        </div>
-        <div class="card">
-          <span class="tier-label">Tier 03</span>
-          <h3>Inner Circle</h3>
-          <ul>
-            <li>Everything in Operator</li>
-            <li>Quarterly 1:1 strategy session</li>
-            <li>Direct message access</li>
             <li>Annual planning intensive</li>
           </ul>
-          <span class="price mono">$199 / month</span>
+          <div class="join-row">
+            <!-- TODO: replace with Larry's real Patreon URL -->
+            <a href="https://patreon.com/PLACEHOLDER" class="btn btn-primary" target="_blank" rel="noopener">Join on Patreon</a>
+            <!-- TODO (placeholder): replace with the real membership price -->
+            <span class="price-hint">Membership from $__/month — see tiers on Patreon</span>
+          </div>
         </div>
-      </div>
-      <div class="cta-row" style="margin-top: 2.5rem;">
-        <a href="https://patreon.com/larrywilson" class="btn btn-primary" target="_blank" rel="noopener">See all tiers on Patreon</a>
       </div>
     </div>
   </section>
 
+  <!-- ================= SPEAKING ================= -->
   <section id="speaking">
     <div class="wrap speak-grid">
       <div>
@@ -599,33 +762,55 @@
         </div>
       </div>
       <div class="booking-box">
-        <h3>Check availability</h3>
+        <h3>Book Larry</h3>
         <p>Tell me about your event — audience, date, and format — and I'll follow up within 2 business days.</p>
-        <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-primary" style="width:100%; justify-content:center;">Email to Book</a>
+        <!-- TODO: replace with Larry's real booking email -->
+        <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-primary" style="width:100%; justify-content:center;">Book Me to Speak</a>
       </div>
     </div>
   </section>
 
-  <section class="raised">
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="raised" id="testimonials">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">In Their Words</p>
         <h2>What members and audiences say</h2>
+        <p>Placeholder cards — replace with real quotes from Patreon members and event hosts before launch.</p>
       </div>
-      <div class="quote-card">
-        <p class="placeholder-copy">This is a placeholder for a real testimonial. Ask Larry for two or three short quotes from Patreon members or event hosts, and drop them in here — one to two sentences each reads best.</p>
-        <p class="tag">— Placeholder, replace before launch</p>
+      <div class="testimonial-grid">
+        <!-- TODO (placeholder): replace with a real member testimonial -->
+        <div class="quote-card">
+          <p class="quote-text">"Placeholder testimonial — a short quote from a Patreon member about what changed when they started running the numbers right."</p>
+          <p class="tag">— Name, Job Title, Member since 20__</p>
+          <p class="edit-hint">placeholder — replace</p>
+        </div>
+        <!-- TODO (placeholder): replace with a real event-host testimonial -->
+        <div class="quote-card">
+          <p class="quote-text">"Placeholder testimonial — a line from an event host about how the audience responded to Larry's talk."</p>
+          <p class="tag">— Name, Event / Organization</p>
+          <p class="edit-hint">placeholder — replace</p>
+        </div>
+        <!-- TODO (placeholder): replace with a real member testimonial -->
+        <div class="quote-card">
+          <p class="quote-text">"Placeholder testimonial — ideally from a member who paid off debt or finally got their cash flow under control."</p>
+          <p class="tag">— Name, Job Title</p>
+          <p class="edit-hint">placeholder — replace</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ================= FINAL CTA / CONTACT ================= -->
   <section class="final-cta" id="contact">
     <div class="wrap">
       <p class="eyebrow">Start Now</p>
       <h2>Your numbers won't fix themselves. Let's get to work.</h2>
       <div class="cta-row">
-        <a href="https://patreon.com/larrywilson" class="btn btn-primary" target="_blank" rel="noopener">Join the Coaching Group</a>
-        <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-ghost">Book a Speaking Engagement</a>
+        <!-- TODO: replace with Larry's real Patreon URL -->
+        <a href="https://patreon.com/PLACEHOLDER" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Join the Coaching Community</a>
+        <!-- TODO: replace with Larry's real booking email -->
+        <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-ghost btn-lg">Book Me to Speak</a>
       </div>
     </div>
   </section>
@@ -635,13 +820,17 @@
       <div class="footer-row">
         <a class="wordmark" href="#top">Larry <span>Wilson</span></a>
         <nav class="footer-links">
-          <a href="https://patreon.com/larrywilson" target="_blank" rel="noopener">Patreon</a>
-          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <!-- TODO: replace href="#" with real platform URLs -->
+          <a href="#" target="_blank" rel="noopener">Patreon</a>
+          <a href="#" target="_blank" rel="noopener">YouTube</a>
           <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <!-- TODO: replace with Larry's real email -->
           <a href="mailto:booking@larrywilsoncoaching.com">booking@larrywilsoncoaching.com</a>
         </nav>
       </div>
       <p class="copy mono">© 2026 Larry Wilson Coaching. All rights reserved.</p>
+      <p class="placeholder-flag">Placeholder site: Patreon URL, email, platform links, counter figures, testimonials, pricing, and photos still need Larry's real details — see README checklist.</p>
     </div>
   </footer>
 
