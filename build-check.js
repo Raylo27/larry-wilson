@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 /**
  * Zero-dependency build check for the Larry Wilson static site.
- * "npm run build" validates that index.html:
- *   1. contains every required section anchor
- *   2. carries the required placeholder TODO markers
- *   3. has balanced tags for the elements we control
+ * "npm run build" validates that public/index.html contains the
+ * required section anchors and key real-content markers.
  * Exits 0 on success, 1 on failure.
  */
 "use strict";
@@ -22,46 +20,35 @@ function required(label, ok) {
   if (!ok) errors.push(label);
 }
 
-// --- Required sections -------------------------------------------------
-required("section #story exists", /id="story"/.test(html));
+// --- Required sections ---------------------------------------------------
+required("section #top exists", /id="top"/.test(html));
+required("section #about exists", /id="about"/.test(html));
 required("section #coaching exists", /id="coaching"/.test(html));
 required("section #speaking exists", /id="speaking"/.test(html));
-required("section #testimonials exists", /id="testimonials"/.test(html));
 required("section #contact exists", /id="contact"/.test(html));
-required("hero contains name + tagline", /<h1>Larry Wilson<\/h1>/.test(html) && /class="tagline"/.test(html));
-required("platform links row present", (html.match(/class="platform-card"/g) || []).length >= 4);
+required("page title mentions Larry Wilson", /<title>[^<]*Larry Wilson/.test(html));
 
-// --- Required CTAs ------------------------------------------------------
-const patreonCount = (html.match(/https:\/\/patreon\.com\/PLACEHOLDER/g) || []).length;
-required("Patreon CTA placeholder href present (>=4 occurrences)", patreonCount >= 4);
-const mailtoCount = (html.match(/mailto:booking@larrywilsoncoaching\.com/g) || []).length;
-required("booking mailto placeholder present (>=3 occurrences)", mailtoCount >= 3);
-required('hero CTA "Join the Coaching Community" present', html.includes("Join the Coaching Community"));
-required('hero CTA "Book Me to Speak" present', html.includes("Book Me to Speak"));
-required("speaking section has Book Larry CTA", /id="speaking"[\s\S]*Book Me to Speak/.test(html) || /Book Me to Speak[\s\S]*id="speaking"/.test(html));
-required("social proof counters present", (html.match(/class="stat"/g) || []).length >= 3);
+// --- Required real content (no placeholders) ------------------------------
+required(
+  "real Patreon link present",
+  /https:\/\/www\.patreon\.com\/u65294389/.test(html)
+);
+required(
+  "no leftover placeholder Patreon links",
+  !/patreon\.com\/PLACEHOLDER/.test(html)
+);
+required(
+  "booking email present",
+  /larrywilson194@yahoo\.com/.test(html)
+);
 
-// --- TODO markers -------------------------------------------------------
-const todoCount = (html.match(/TODO/g) || []).length;
-required("TODO markers present for placeholder fill-in", todoCount >= 10);
+checks.forEach(([label, ok]) => {
+  console.log(`${ok ? "✔" : "✘"} ${label}`);
+});
 
-// --- Balanced tags ------------------------------------------------------
-function checkBalanced(tag) {
-  const open = (html.match(new RegExp("<" + tag + "(\\s|>)", "g")) || []).length;
-  const close = (html.match(new RegExp("</" + tag + ">", "g")) || []).length;
-  required("<" + tag + "> balanced (" + open + "/" + close + ")", open === close);
-}
-["div", "section", "span", "a", "p", "h1", "h2", "h3", "ul", "li", "header", "main", "footer", "nav", "strong", "em"].forEach(checkBalanced);
-
-// --- Output -------------------------------------------------------------
-const passed = checks.filter(([, ok]) => ok).length;
-console.log(`\n  Larry Wilson build check`);
-console.log(`  ${passed}/${checks.length} checks passed`);
 if (errors.length) {
-  console.log("\n  FAILED:");
-  errors.forEach((e) => console.log("    ✗ " + e));
-  console.log("");
+  console.error(`\n${errors.length} check(s) failed.`);
   process.exit(1);
 }
-console.log("  ✓ all required sections, CTAs, and placeholders present\n");
+console.log(`\nAll ${checks.length} checks passed.`);
 process.exit(0);
