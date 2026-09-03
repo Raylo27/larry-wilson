@@ -23,6 +23,7 @@ function required(label, ok) {
 // --- Required sections ---------------------------------------------------
 required("section #top exists", /id="top"/.test(html));
 required("section #about exists", /id="about"/.test(html));
+required("section #ventures exists", /id="ventures"/.test(html));
 required("section #coaching exists", /id="coaching"/.test(html));
 required("section #speaking exists", /id="speaking"/.test(html));
 required("section #contact exists", /id="contact"/.test(html));
