@@ -14,6 +14,16 @@ serves the folder locally via Python's http server.
 vercel --prod   # deploys to https://larry-wilson.vercel.app
 ```
 
+## Photos
+
+Real client photos live in `public/assets/`:
+
+- `larry-hero.jpg` — hero portrait (4:5 crop, `object-position` tuned for the current photo)
+- `larry-about.jpg` — story/about image (3:2 crop)
+
+To swap in professional headshots later, **replace these files with the same filenames** — no code
+changes needed. Keep the longest edge ≤ 1600px, JPEG quality ~80.
+
 ## 🚩 Placeholder checklist — replace before real launch
 
 Search the code for `TODO` comments. Everything below is a placeholder:
@@ -21,10 +31,10 @@ Search the code for `TODO` comments. Everything below is a placeholder:
 | # | Item | Where |
 |---|------|-------|
 | 1 | **Patreon URL** — replace every `https://patreon.com/PLACEHOLDER` (nav CTA, hero CTA, coaching CTA, final CTA) | `public/index.html` |
-| 2 | **Booking/contact email** — replace every `mailto:booking@larrywilsoncoaching.com` (hero "Book Me to Speak", speaking box, final CTA, footer) | `public/index.html` |
+| 2 | **Booking/contact email** — speaking box now uses `larrywilson194@yahoo.com`; hero/final/footer still use `booking@larrywilsoncoaching.com` (placeholder) | `public/index.html` |
 | 3 | **Platform links** — Patreon, YouTube, LinkedIn, Instagram: replace the four `href="#"` platform cards + the four footer links | `public/index.html` |
 | 4 | **Social proof counters** — members (500+), events (30+), years (14): edit the `.stat` figures (marked `data-edit`) | `public/index.html` |
 | 5 | **Testimonials** — replace the 3 placeholder quote cards with real member/event-host quotes | `public/index.html` |
-| 6 | **Photo** — swap the "LW" portrait mark for a real photo of Larry | `public/index.html` |
+| 6 | **Photo** — hero + about photos live in `public/assets/` (`larry-hero.jpg`, `larry-about.jpg`); swap = replace the file, same filename | `public/assets/` |
 | 7 | **Member benefits** — confirm the 6-item benefits list and the "$__/month" price hint with Larry | `public/index.html` |
 | 8 | **Speaking topics** — confirm the 4 topic rows are current | `public/index.html` |

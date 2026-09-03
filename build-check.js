@@ -41,6 +41,19 @@ required('hero CTA "Book Me to Speak" present', html.includes("Book Me to Speak"
 required("speaking section has Book Larry CTA", /id="speaking"[\s\S]*Book Me to Speak/.test(html) || /Book Me to Speak[\s\S]*id="speaking"/.test(html));
 required("social proof counters present", (html.match(/class="stat"/g) || []).length >= 3);
 
+// --- Credentials, photos, real speaking email ---------------------------
+required("speaking email larrywilson194@yahoo.com clickable (>=2 mailto)", (html.match(/mailto:larrywilson194@yahoo\.com/g) || []).length >= 2);
+required("speaking email larrywilson194@yahoo.com visible", html.includes(">larrywilson194@yahoo.com</a>"));
+const creds = [
+  "Owner of multiple coffee shops",
+  "Stock market investor",
+  "Commercial &amp; residential real estate",
+  "Mentored hundreds on digital platforms",
+];
+required("credentials section present (all 4 items)", creds.every((c) => html.includes(c)));
+required("hero photo referenced", html.includes('src="/assets/larry-hero.jpg"'));
+required("about photo referenced", html.includes('src="/assets/larry-about.jpg"'));
+
 // --- TODO markers -------------------------------------------------------
 const todoCount = (html.match(/TODO/g) || []).length;
 required("TODO markers present for placeholder fill-in", todoCount >= 10);

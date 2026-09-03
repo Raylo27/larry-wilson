@@ -223,42 +223,17 @@
     aspect-ratio: 4 / 5;
     border: 1px solid var(--line-strong);
     border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-      radial-gradient(120% 90% at 15% 0%, color-mix(in srgb, var(--brass) 20%, transparent), transparent 60%),
-      linear-gradient(160deg, var(--ink-raised), color-mix(in srgb, var(--ledger) 22%, var(--ink-raised)));
     overflow: hidden;
+    background: var(--ink-raised);
   }
-  .portrait-mark::before {
-    content: "";
+  .portrait-mark img.portrait-photo {
     position: absolute;
     inset: 0;
-    background-image:
-      repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 42px),
-      repeating-linear-gradient(0deg, var(--line) 0 1px, transparent 1px 42px);
-    opacity: 0.5;
-  }
-  .portrait-mark .initials {
-    position: relative;
-    font-family: "Fraunces", serif;
-    font-weight: 500;
-    font-size: clamp(4.5rem, 11vw, 7rem);
-    color: var(--brass);
-    letter-spacing: 0.02em;
-  }
-  .portrait-mark .swap-note {
-    position: absolute;
-    bottom: 0.9rem;
-    left: 0.9rem;
-    right: 0.9rem;
-    font-family: "Space Mono", monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    display: block;
   }
 
   /* ---------- Platform links hub ---------- */
@@ -308,6 +283,41 @@
   }
   .platform-card:hover .arrow, .platform-card:focus-visible .arrow { transform: translateX(3px); }
   .platform-card:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+  /* ---------- Credentials strip ---------- */
+  .cred-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 2.4rem 0;
+  }
+  .cred-strip .cred-list {
+    list-style: none;
+    margin: 1.3rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0;
+  }
+  .cred-strip .cred-list li {
+    font-family: "Fraunces", serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.35;
+    display: inline-flex;
+    align-items: center;
+  }
+  .cred-strip .cred-list li + li::before {
+    content: "\00B7";
+    color: var(--brass);
+    margin: 0 1rem;
+    font-family: "Space Mono", monospace;
+    font-size: 1rem;
+  }
+  @media (max-width: 640px) {
+    .cred-strip .cred-list li { font-size: 1.05rem; }
+    .cred-strip .cred-list li + li::before { margin: 0 0.7rem; }
+  }
 
   /* ---------- Ledger stat strip ---------- */
   .stat-strip {
@@ -378,6 +388,24 @@
     text-wrap: balance;
     border-left: 2px solid var(--brass);
     padding-left: 1.3rem;
+  }
+  .about-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .about-photo {
+    margin: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--ink-raised);
+  }
+  .about-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
   }
   .about-body p { color: var(--muted); margin: 0 0 1.1rem; }
   .about-body p:last-child { margin-bottom: 0; }
@@ -480,6 +508,17 @@
   section.raised .booking-box { background: var(--ink-raised); }
   .booking-box h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }
   .booking-box p { color: var(--muted); font-size: 0.94rem; margin: 0 0 1.4rem; }
+  .booking-email {
+    margin: 1.1rem 0 0;
+    text-align: center;
+    font-size: 0.85rem;
+    word-break: break-all;
+  }
+  .booking-email a {
+    color: var(--brass);
+    text-decoration: none;
+  }
+  .booking-email a:hover { text-decoration: underline; }
 
   /* Testimonials */
   .testimonial-grid {
@@ -621,13 +660,25 @@
           <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-ghost btn-lg">Book Me to Speak</a>
         </div>
       </div>
-      <!-- TODO: replace the "LW" mark with a real photo of Larry -->
-      <div class="portrait-mark" role="img" aria-label="Placeholder portrait mark for Larry Wilson — swap for a real photo">
-        <span class="initials">LW</span>
-        <span class="swap-note">Swap in Larry's photo here</span>
+      <!-- Larry's photo: swap by replacing /assets/larry-hero.jpg (same filename) -->
+      <div class="portrait-mark">
+        <img class="portrait-photo" src="/assets/larry-hero.jpg" alt="Larry Wilson" loading="eager">
       </div>
     </div>
   </section>
+
+  <!-- ================= CREDENTIALS ================= -->
+  <div class="cred-strip">
+    <div class="wrap">
+      <p class="eyebrow">Credentials</p>
+      <ul class="cred-list">
+        <li>Owner of multiple coffee shops</li>
+        <li>Stock market investor</li>
+        <li>Commercial &amp; residential real estate</li>
+        <li>Mentored hundreds on digital platforms</li>
+      </ul>
+    </div>
+  </div>
 
   <!-- ================= PLATFORM LINKS ================= -->
   <div class="platform-strip">
@@ -674,7 +725,13 @@
   <!-- ================= STORY / ABOUT ================= -->
   <section id="story">
     <div class="wrap about-grid">
-      <p class="lede-quote">"I didn't learn this from a textbook. I ran the numbers wrong for a decade before I ran them right."</p>
+      <div class="about-visual">
+        <!-- Larry's photo: swap by replacing /assets/larry-about.jpg (same filename) -->
+        <figure class="about-photo">
+          <img src="/assets/larry-about.jpg" alt="Larry Wilson" loading="lazy">
+        </figure>
+        <p class="lede-quote">"I didn't learn this from a textbook. I ran the numbers wrong for a decade before I ran them right."</p>
+      </div>
       <div class="about-body">
         <p><strong>Larry Wilson</strong> spent the first half of his career building businesses the hard way — trial, error, and a lot of expensive lessons about cash flow, debt, and what "profitable" actually means. The second half has been about teaching other people to skip the expensive part.</p>
         <p>Before the coaching there were late nights staring at spreadsheets that didn't add up, payrolls that cleared by a margin he wouldn't wish on anyone, and a debt load that taught him more than any MBA could. He didn't fix it with a windfall or a lucky break. He fixed it by finally running the numbers right — month after month, line by line — until the business and the balance sheet both held up.</p>
@@ -764,8 +821,8 @@
       <div class="booking-box">
         <h3>Book Larry</h3>
         <p>Tell me about your event — audience, date, and format — and I'll follow up within 2 business days.</p>
-        <!-- TODO: replace with Larry's real booking email -->
-        <a href="mailto:booking@larrywilsoncoaching.com" class="btn btn-primary" style="width:100%; justify-content:center;">Book Me to Speak</a>
+        <a href="mailto:larrywilson194@yahoo.com" class="btn btn-primary" style="width:100%; justify-content:center;">Book Me to Speak</a>
+        <p class="booking-email mono"><a href="mailto:larrywilson194@yahoo.com">larrywilson194@yahoo.com</a></p>
       </div>
     </div>
   </section>
